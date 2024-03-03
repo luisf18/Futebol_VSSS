@@ -4,7 +4,8 @@ from time import time as t
 # Modulo registrador de dados
 # permite salvar medições
 
-Path = "C:/Users/UERJBotz/Documents/LF18/(00) GITHUB/Futebol_VSSS/resultados/"
+FILE = __file__
+Path = FILE[:FILE.rfind('\\')+1]+"/resultados/"
 file = Path + "resultados.txt"
 
 dt = 0.3

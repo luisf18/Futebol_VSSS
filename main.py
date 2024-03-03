@@ -17,7 +17,8 @@ from controle import new_pid as pid
 PX2CM = 0.1 # conversão
 img = np.zeros((10,10,3),np.uint8) # imagem
 # pasta
-path = "C:/Users/UERJBotz/Documents/LF18/(00) GITHUB/Futebol_VSSS/"
+FILE = __file__
+path = FILE[:FILE.rfind('\\')+1]
 os.chdir(path)
 
 

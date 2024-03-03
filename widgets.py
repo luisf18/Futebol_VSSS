@@ -13,7 +13,7 @@ import numpy as np
 from PIL import Image,ImageTk,ImageOps
 
 FILE = __file__
-path = FILE[:FILE.rfind('\\')+1]
+local_path = FILE[:FILE.rfind('\\')+1]
 
 def constrain( x, MIN, MAX ):
     if( x <= MIN ): return MIN
@@ -407,7 +407,7 @@ class serial_consol:
 
 
 class save_image:
-    def __init__( self, x, y, root, path = path ):
+    def __init__( self, x, y, root, path = local_path ):
         #x=150,y=490
         self.path = path
         self.Flag_save_img = False
@@ -436,11 +436,11 @@ class save_image:
 
 class record:
     
-    def __init__( self, x, y, root, call, path = path, dt = 50 ):
+    def __init__( self, x, y, root, call, path = local_path, dt = 50 ):
         self.dt = dt
         w = 20
-        self.icon_play = tk_icon( w,w,'C:/Users/UERJBotz/Documents/LF18/(00) GITHUB/Futebol_VSSS_F18/images/icons/play-big.png')
-        self.icon_stop = tk_icon( w,w,'C:/Users/UERJBotz/Documents/LF18/(00) GITHUB/Futebol_VSSS_F18/images/icons/stop-big.png') 
+        self.icon_play = tk_icon( w,w,path+'/images/icons/play-big.png')
+        self.icon_stop = tk_icon( w,w,path+'/images/icons/stop-big.png')
 
         self.path = path
         self.Flag_save = False
@@ -637,7 +637,7 @@ class bot_tag:
 
 
 class ball_tag:
-    def __init__(self, root, x, y, w, colors_hue = generic_color_hue, image_path = 'C:/Users/UERJBotz/Documents/LF18/(00) GITHUB/Futebol_VSSS_F18/images/vsss_ball.png') -> None:
+    def __init__(self, root, x, y, w, colors_hue = generic_color_hue, image_path = local_path+'/images/vsss_ball.png') -> None:
         self.x = x
         self.y = y
         self.w = w
@@ -682,7 +682,7 @@ class ball_tag:
 
 class mode_selection:
 
-    def __init__(self, root, x, y, w, title, options, images, text_size = 8, images_path = 'C:/Users/UERJBotz/Documents/LF18/(00) GITHUB/Futebol_VSSS_F18/images/icons/') -> None:
+    def __init__(self, root, x, y, w, title, options, images, text_size = 8, images_path = local_path+'/images/icons/') -> None:
         
         self.x = x
         self.y = y
@@ -730,7 +730,7 @@ class mode_selection:
 # FOR TESTS ==============================================================
 if __name__ == '__main__':
     
-    print( "FILE -> ", FILE, "\nPATH:", path )
+    print( "FILE -> ", FILE, "\nPATH:", local_path )
 
     G = window('widgets...',1200,500)
 
@@ -776,7 +776,7 @@ if __name__ == '__main__':
         if(rec_step.can_write(True)):
             rec_step.save_line([1,2,3,'A'])
 
-    rec_step = record(10,10,G.win,b,'')
+    rec_step = record(10,10,G.win,b)
     
     def display():
 

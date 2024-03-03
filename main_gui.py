@@ -100,8 +100,8 @@ def rec_step_call_default():
     if(rec_step.can_write(True)):
         rec_step.save_line([1,2,3,'A'])
 
-rec_step = wg.record(10,710,win,rec_step_call_default,'')
-#rec_step = wg.record(810,720,win,rec_step_call_default,'')
+rec_step = wg.record(10,710,win,rec_step_call_default)
+#rec_step = wg.record(810,720,win,rec_step_call_default)
 
 # LOOP ==================================================================
 def loop():

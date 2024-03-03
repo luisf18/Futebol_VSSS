@@ -403,7 +403,10 @@ if __name__ == '__main__':
 
   start = time.time()
   
-  frame_1 = cv2.imread( 'c:\\users\\UERJBotz\Documents\LF18\(00) GITHUB\Futebol_VSSS_F18\images\\vsss_teste_cap.png' )
+  FILE = __file__
+  path = FILE[:FILE.rfind('\\')+1]
+
+  frame_1 = cv2.imread( path + '\images\\vsss_teste_cap.png' )
 
   while(True):
       start = time.time()
