@@ -20,6 +20,7 @@ void setup() {
   ESPNOWSerial.canReciveFrom_anyDevice();
 
   ESPNOWSerial.printf( "ESPNOWSerial, Hello World!\n" );
+  Serial.println( "TX bridge init" );
 
   //ESPNOWSerial.setReciveCallback( ESPNOWSerial_callback );
 
@@ -31,9 +32,10 @@ void loop() {
 
   if( digitalRead(0) == LOW ){
     digitalWrite(2,HIGH);
-    ESPNOWSerial.println( "pid.auto 0 bot.stop" );
+    Serial.println("stopping");
+    ESPNOWSerial.println( "stop" );
     delay(20);
-    ESPNOWSerial.println( "pid.auto 0 bot.stop" );
+    ESPNOWSerial.println( "stop" );
     digitalWrite(2,LOW);
   }
   

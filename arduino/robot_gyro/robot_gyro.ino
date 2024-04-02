@@ -1,6 +1,5 @@
 // Basic demo for accelerometer readings from Adafruit MPU6050
 
-#include "ESPNOWSerial.h"
 #include "DRV8833.h"
 #include "IMU.h"
 
@@ -113,7 +112,6 @@ typedef struct control_pid_t{
 }control_pid_t;
 
 control_pid_t PID_angle;
-
 control_pid_t PID_mix_real;
 control_pid_t PID_mix_set;
 control_pid_t PID_mix;
