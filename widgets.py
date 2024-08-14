@@ -69,6 +69,7 @@ class window:
 
 # SLIDERS ============================================================================================================
 class slider:
+    
     def __init__(self, MIN, MAX, name, main_frame, row = 0, length = 200, default = None, unit = '', border = 3, lable_width = 13  ) -> None:
         self.unit = unit
         self.MIN = MIN
@@ -81,9 +82,9 @@ class slider:
             self.str_var.set(MIN)
         else:
             self.str_var.set(default)
-        self.scale = ttk.Scale(  self.frame, from_=MIN, to=MAX, orient=HORIZONTAL, length=self.length, variable=self.str_var, command=lambda s:self.str_var.set(f'{int(float(s))}') )
-        self.btn_L = ttk.Button( self.frame, text= "<", width=0, command=lambda : self.str_var.set( constrain( int(float(self.str_var.get()))-1, MIN, MAX) ) )
-        self.btn_R = ttk.Button( self.frame, text= ">", width=0, command=lambda : self.str_var.set( constrain( int(float(self.str_var.get()))+1, MIN, MAX) ) )
+        self.scale = ttk.Scale(  self.frame, from_=MIN, to=MAX, orient=HORIZONTAL, length=self.length, variable=self.str_var, command=lambda s: self.update( int(float(s)) ) )
+        self.btn_L = ttk.Button( self.frame, text= "<", width=0, command=lambda : self.update( int(float(self.str_var.get()))-1 ) )
+        self.btn_R = ttk.Button( self.frame, text= ">", width=0, command=lambda : self.update( int(float(self.str_var.get()))+1 ) )
         self.label = ttk.Label(  self.frame, text=f" {name}: {self.scale.get()}", foreground="white", background="#333333", width = lable_width )
         self.frame.grid( column=0, row=row, padx=0 )
         self.btn_L.grid( column=0, row=0, padx=0 )
@@ -91,11 +92,13 @@ class slider:
         self.scale.grid( column=2, row=0, padx=6 )
         self.label.grid( column=3, row=0, padx=3 )
 
+    def update(self, val):
+        self.str_var.set( constrain( val, self.MIN, self.MAX) )
+        self.label.configure(text=f" {self.name}: {int(self.scale.get())}{self.unit}")
+        # coloca aqui a alteração do valor do dicionario
+    
     def get(self):
         return int(self.scale.get())
-    
-    def update(self):
-        self.label.configure(text=f" {self.name}: {int(self.scale.get())}{self.unit}")
     
     def color(self, txt_color):
         self.label.configure( foreground=txt_color)
@@ -114,12 +117,16 @@ class panel:
         ttk.Label( self.frame, text=name, foreground="white", justify=LEFT ).grid( row=0 )
         self.sliders = {}
         self.buttons = {}
+
     def add_slider(self, MIN, MAX, name, row = 0, length = 200, default = None, unit = ''):
         self.sliders[name] = slider( MIN, MAX, name, self.frame, row = row, length = length, default = default, unit = unit)
+    
+    def save(self):
+        dicionario = { s: self.sliders[s].get() for s in self.sliders }
 
-    def update(self):
-        for s in self.sliders:
-            self.sliders[s].update()
+    #def update(self):
+    #    for s in self.sliders:
+    #        self.sliders[s].update()
 
 # TAG ===========================================================================================================
 class tag:
@@ -782,7 +789,7 @@ if __name__ == '__main__':
 
         monitor_camera.update_BGR( camera.read() )
 
-        painel.update()
+        #painel.update()
         
         c = [ 
             painel_cores.sliders['red'].get(),

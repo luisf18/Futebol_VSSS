@@ -105,12 +105,6 @@ rec_step = wg.record(10,710,win,rec_step_call_default)
 
 # LOOP ==================================================================
 def loop():
-
-    # atualiza sliders
-    painel.update()
-    painel_cores.update()
-    painel_pid.update()
-    rec_step.voltage.update()
     
     # UPDATE COLORS =======================================================================
     color_hue_min = [ painel_cores.sliders[c].get() for c in painel_cores.sliders ]

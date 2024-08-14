@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 
 
 def graf( name ):
-    path = "C:/Users/UERJBotz/Documents/LF18/(00) GITHUB/Futebol_VSSS_F18/resultados/"
+    # C:\Users\UERJBotz\Documents\LF18\(00) GITHUB\Futebol_VSSS\resultados\validacao_experimental\trajetoria_campo_vetorial
+    path = "C:/Users/UERJBotz/Documents/LF18/(00) GITHUB/Futebol_VSSS/resultados/validacao_experimental/trajetoria_campo_vetorial/"
     file = path + name
     # Leia o arquivo TXT
     with open(file, 'r') as file:
@@ -21,8 +22,8 @@ def graf( name ):
 
     # Exemplo de gráfico de linha
     #plt.subplot(2, 1, 1)
-    plt.plot(columns[0, 5],710-columns[0, 6], 'ro', label='bola')
-    plt.plot(columns[0, 7],710-columns[0, 8], 'gx', label='obstaculo')
+    plt.plot(columns[0, 5],710-columns[0, 6], 'rX',  color = 'purple', label='bola', markersize=15)
+    #plt.plot(columns[0, 7],710-columns[0, 8], 'X', color = '#00FF00', label='obstaculo', markersize=15)
     plt.plot(columns[:, 2],710-columns[:, 3], 'bo-', label='trajetória')
     #plt.plot(columns[:, 0]-columns[0, 1], columns[:, 4], 'r', label='velocidade angular medida')
     #plt.xlabel('velocidade angular [rad/s]')
@@ -31,9 +32,11 @@ def graf( name ):
     plt.xlim(0, 947)  # Limite X
     plt.ylim(0, 710)  # Limite Y
 
-    plt.ylabel('y [mm]')
-    plt.xlabel('x [mm]')
-    plt.legend()
+    plt.ylabel('y [mm]', fontsize=18)
+    plt.xlabel('x [mm]', fontsize=18)
+    plt.xticks(fontsize=18)  # Tamanho da fonte dos números no eixo X
+    plt.yticks(fontsize=18)  # Tamanho da fonte dos números no eixo Y
+    plt.legend(fontsize=18)
     plt.grid()
 
     #947 710
@@ -49,11 +52,11 @@ def graf( name ):
 
     #plt.tight_layout()
 
-    plt.savefig(path + f'{name}.png')
-
+    plt.savefig(path + f'{name}.png', transparent=True )
     plt.show()
 
-graf( "vector_path.txt" )
+graf( "campo.txt" )
+
 
 
 
